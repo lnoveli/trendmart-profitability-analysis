@@ -4,7 +4,7 @@
 
 ![Dashboard Preview](assets/preview.png)
 
-**Live Dashboard:** https://YOUR_GITHUB_PAGES_LINK
+**Live Dashboard:** https://github.com/lnoveli/trendmart-profitability-analysis
 
 ---
 
