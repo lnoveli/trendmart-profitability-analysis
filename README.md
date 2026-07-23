@@ -26,6 +26,20 @@
 
 ---
 
+## 📑 Table of Contents
+
+- [Executive Summary](#-executive-summary)
+- [Business Impact](#-business-impact)
+- [Project Workflow](#️-project-workflow)
+- [Key Insights](#-key-insights)
+- [Dashboard](#-dashboard)
+- [Technologies Used](#-technologies-used)
+- [Project Structure](#-project-structure)
+- [How to Run](#-how-to-run)
+- [Future Improvements](#-future-improvements)
+
+---
+
 ## Executive Summary
 **Live Dashboard:** https://github.com/lnoveli/trendmart-profitability-analysis
 
