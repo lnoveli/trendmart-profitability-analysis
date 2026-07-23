@@ -80,6 +80,34 @@ Key outcomes include:
 
 ---
 
+## 🏗️ Project Workflow
+```text
+Retail Dataset
+      │
+      ▼
+Python (Pandas)
+      │
+      ▼
+Data Cleaning & Transformation
+      │
+      ▼
+Feature Engineering
+      │
+      ▼
+Exploratory Data Analysis
+      │
+      ▼
+Customer Segmentation
+      │
+      ▼
+Interactive Plotly Dashboard
+      │
+      ▼
+Business Insights & Strategic Decisions
+```
+
+---
+
 # Dataset
 
 **Source**
