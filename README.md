@@ -67,6 +67,19 @@ This analysis was designed to answer five key business questions:
 
 ---
 
+## 💼 Business Impact
+
+This analysis supports strategic decision-making by transforming transactional retail data into actionable business insights.
+
+Key outcomes include:
+
+- Identified the most profitable customer segments to support targeted marketing strategies.
+- Highlighted low-margin products and categories for pricing and portfolio optimization.
+- Revealed sales patterns that can improve inventory planning and demand forecasting.
+- Enabled executive monitoring through an interactive dashboard for faster, data-driven decisions.
+
+---
+
 # Dataset
 
 **Source**
