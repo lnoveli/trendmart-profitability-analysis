@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrendMart — Dossiê de Lucratividade</title>
+<meta name="description" content="Diagnóstico interativo de lucratividade, clientes e sazonalidade a partir do dataset Superstore.">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-top">
+    <div>
+      <p class="masthead-id">Dossiê Nº TM-2014/2017 &nbsp;·&nbsp; Reaberto em <span id="today"></span></p>
+      <h1>TrendMart — Diagnóstico de Lucratividade</h1>
+      <p class="subtitle">Auditoria de rentabilidade por segmento, categoria, região e cliente — Superstore Retail Dataset, 2014–2017.</p>
+    </div>
+    <div class="status-stamp">Em Análise</div>
+  </div>
+
+  <div class="kpi-strip" id="kpiStrip"></div>
+</header>
+
+<nav class="filter-bar" id="filterBar">
+  <div class="filter-group">
+    <span class="filter-group-label">Região</span>
+    <div id="filterRegion"></div>
+  </div>
+  <div class="filter-group">
+    <span class="filter-group-label">Segmento</span>
+    <div id="filterSegment"></div>
+  </div>
+  <div class="filter-group">
+    <span class="filter-group-label">Categoria</span>
+    <div id="filterCategory"></div>
+  </div>
+  <span class="reset-link" id="resetFilters">✕ limpar filtros</span>
+</nav>
+
+<nav class="tab-nav" id="tabNav">
+  <button class="tab-btn active" data-page="overview"><span class="num">01</span>Visão Geral</button>
+  <button class="tab-btn" data-page="segments"><span class="num">02</span>Segmentos &amp; Categorias</button>
+  <button class="tab-btn" data-page="regional"><span class="num">03</span>Regional</button>
+  <button class="tab-btn" data-page="customers"><span class="num">04</span>Clientes (RFM)</button>
+  <button class="tab-btn" data-page="seasonality"><span class="num">05</span>Sazonalidade</button>
+  <button class="tab-btn" data-page="products"><span class="num">06</span>Segmentação de Produtos</button>
+</nav>
+
+<main>
+
+  <!-- 01 VISÃO GERAL -->
+  <section class="page active" id="page-overview">
+    <div class="page-heading">
+      <h2>Visão Geral</h2>
+      <p class="page-note">Evolução mensal de vendas, lucro e margem no período filtrado.</p>
+    </div>
+    <div class="insight" id="insightOverview"></div>
+    <div class="chart-card"><h3>Vendas &amp; Lucro Mensal</h3><div id="chartMonthly" style="height:340px;"></div></div>
+    <div class="grid-2">
+      <div class="chart-card"><h3>Margem Mensal (%)</h3><div id="chartMonthlyMargin" style="height:260px;"></div></div>
+      <div class="chart-card"><h3>Vendas por Região</h3><div id="chartRegionShare" style="height:260px;"></div></div>
+    </div>
+  </section>
+
+  <!-- 02 SEGMENTOS -->
+  <section class="page" id="page-segments">
+    <div class="page-heading">
+      <h2>Segmentos &amp; Categorias</h2>
+      <p class="page-note">Onde a margem se sustenta — e onde ela desaparece.</p>
+    </div>
+    <div class="insight" id="insightSegments"></div>
+    <div class="grid-2">
+      <div class="chart-card"><h3>Margem por Segmento</h3><div id="chartSegmentMargin" style="height:320px;"></div></div>
+      <div class="chart-card"><h3>Piores vs Melhores Sub-Categorias</h3><div id="chartSubExtremes" style="height:320px;"></div></div>
+    </div>
+    <div class="chart-card"><h3>Vendas × Lucro por Sub-Categoria (bolha = volume)</h3><div id="chartSubScatter" style="height:380px;"></div></div>
+  </section>
+
+  <!-- 03 REGIONAL -->
+  <section class="page" id="page-regional">
+    <div class="page-heading">
+      <h2>Regional</h2>
+      <p class="page-note">Desconto médio versus margem realizada, por região.</p>
+    </div>
+    <div class="insight" id="insightRegional"></div>
+    <div class="grid-2">
+      <div class="chart-card"><h3>Desconto Médio vs Margem por Região</h3><div id="chartRegionScatter" style="height:340px;"></div></div>
+      <div class="chart-card"><h3>Tables: Impacto do Desconto na Margem</h3><div id="chartTablesDiscount" style="height:340px;"></div></div>
+    </div>
+    <div class="chart-card"><h3>Detalhe por Região</h3><div id="tableRegion"></div></div>
+  </section>
+
+  <!-- 04 CLIENTES -->
+  <section class="page" id="page-customers">
+    <div class="page-heading">
+      <h2>Clientes — Análise RFM</h2>
+      <p class="page-note">Recência, Frequência e Valor Monetário, segmentados via K-Means (k=4).</p>
+    </div>
+    <div class="insight" id="insightCustomers"></div>
+    <div class="grid-4" id="customerClusterCards"></div>
+    <div class="chart-card" style="margin-top:16px;"><h3>Mapa RFM — Frequência × Valor (cor = Recência)</h3><div id="chartRFMScatter" style="height:400px;"></div></div>
+  </section>
+
+  <!-- 05 SAZONALIDADE -->
+  <section class="page" id="page-seasonality">
+    <div class="page-heading">
+      <h2>Sazonalidade</h2>
+      <p class="page-note">Vendas por mês do ano, comparadas entre 2014–2017.</p>
+    </div>
+    <div class="insight" id="insightSeasonality"></div>
+    <div class="chart-card"><h3>Mapa de Calor — Vendas por Ano × Mês</h3><div id="chartHeatmap" style="height:360px;"></div></div>
+    <div class="chart-card"><h3>Sazonalidade Média por Mês</h3><div id="chartSeasonAvg" style="height:300px;"></div></div>
+  </section>
+
+  <!-- 06 PRODUTOS / CLUSTERING -->
+  <section class="page" id="page-products">
+    <div class="page-heading">
+      <h2>Segmentação de Sub-Categorias</h2>
+      <p class="page-note">Clustering (K-Means, k=3) por margem, desconto médio e volume de vendas.</p>
+    </div>
+    <div class="insight" id="insightProducts"></div>
+    <div class="chart-card"><h3>Margem × Desconto Médio (bolha = vendas totais)</h3><div id="chartProductCluster" style="height:400px;"></div></div>
+    <div class="chart-card" style="margin-top:16px;"><h3>Veredito por Sub-Categoria</h3><div id="productVerdictGrid" class="grid-3"></div></div>
+  </section>
+
+</main>
+
+<footer>
+  <div>
+    Fonte: Sample Superstore Dataset · ETL, RFM, clustering (K-Means/scikit-learn) e visualização em Python + Plotly.js.
+    <div class="badge-row">
+      <span class="tech-badge">pandas</span>
+      <span class="tech-badge">scikit-learn</span>
+      <span class="tech-badge">plotly.js</span>
+      <span class="tech-badge">vibe-coded com IA</span>
+    </div>
+  </div>
+  <div>Leonardo — <a href="https://github.com/" target="_blank" rel="noopener">github.com/seu-usuario</a></div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
