@@ -1,9 +1,32 @@
 # TrendMart Profitability Analysis
 
-> End-to-end Business Analytics project focused on profitability analysis, customer segmentation, and strategic decision support using transactional retail data.
+> End-to-end Business Analytics project focused on profitability analysis, customer segmentation, and executive decision support.
 
-![Dashboard Preview](assets/preview.png)
+<p align="center">
+  <a href="https://lnoveli.github.io/trendmart-profitability-analysis/">
+    <img src="assets/preview.png" alt="TrendMart Dashboard" width="100%">
+  </a>
+</p>
 
+<p align="center">
+
+![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?logo=pandas)
+![Plotly](https://img.shields.io/badge/Plotly-Dashboard-3F4F75?logo=plotly)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML-F7931E?logo=scikitlearn)
+![GitHub Pages](https://img.shields.io/badge/Live-Dashboard-success)
+
+</p>
+
+<p align="center">
+
+🚀 <a href="https://lnoveli.github.io/trendmart-profitability-analysis/">Open Interactive Dashboard</a>
+
+</p>
+
+---
+
+## Executive Summary
 **Live Dashboard:** https://github.com/lnoveli/trendmart-profitability-analysis
 
 ---
