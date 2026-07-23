@@ -263,7 +263,7 @@ Physiotherapist transitioning into Business Analytics with interests in Business
 
 **LinkedIn**
 
-(Add your profile)
+https://www.linkedin.com/in/leonardonoveli/
 
 **GitHub**
 
